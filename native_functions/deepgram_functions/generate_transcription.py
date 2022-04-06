@@ -6,6 +6,8 @@ import json
 from deepgram import Deepgram
 from dotenv import load_dotenv
 
+from .create_subtitles import create_subtitles
+
 load_dotenv()
 
 deepgram_api_key = os.getenv("DEEPGRAM_API_KEY")
@@ -24,7 +26,7 @@ async def main(audio_file_name):
         # response = response["results"]["channels"][0]["alternatives"][0]["transcript"]
         utterances = response["results"]["utterances"]
 
-        # create_subtitles(utterances)
+        create_subtitles(utterances)
         # for x in response:
         #     print(x["transcript"])
         print(response)
