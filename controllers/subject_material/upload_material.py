@@ -17,13 +17,12 @@ from ...native_functions.dropbox_functions.upload_files import upload_files
 def upload_material():
 
     audio_file = request.files["audio_file"]
+    new_folder = "lost_in_deep_dev"
 
     # print(audio_file.filename)
-
-    audio_file_name = audio_file.filename
+    audio_file_name = "{}.mp3".format(new_folder)
 
     if audio_file_name != "":
-        new_folder = "new_folder_xxx"
         os.makedirs("media_files\\{}".format(new_folder))
         folder_path = "media_files\\{}".format(new_folder)
         audio_file_name = os.path.join(folder_path, audio_file_name)

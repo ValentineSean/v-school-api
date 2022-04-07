@@ -10,7 +10,7 @@ def create_subtitles(utterances, new_folder):
     # text = "When the power went away."
 
     # subtitles_file = open("subtitles.vtt", "a")
-    subtitles_file = open("././media_files/{}/subtitles.vtt".format(new_folder), "a")
+    subtitles_file = open("././media_files/{}/{}.vtt".format(new_folder, new_folder), "a")
 
     subtitles_file.write(file_header)
 
