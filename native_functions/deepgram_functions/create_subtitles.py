@@ -2,7 +2,7 @@
 
 import datetime as dt
 
-def create_subtitles(utterances):
+def create_subtitles(utterances, new_folder):
     file_header = "WEBVTT"
 
     # line_number = 3
@@ -10,7 +10,7 @@ def create_subtitles(utterances):
     # text = "When the power went away."
 
     # subtitles_file = open("subtitles.vtt", "a")
-    subtitles_file = open("././media_files/subtitles.vtt", "a")
+    subtitles_file = open("././media_files/{}/subtitles.vtt".format(new_folder), "a")
 
     subtitles_file.write(file_header)
 

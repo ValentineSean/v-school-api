@@ -23,13 +23,15 @@ def upload_material():
     audio_file_name = audio_file.filename
 
     if audio_file_name != "":
-        folder_path = "media_files"
+        new_folder = "new_folder_xxx"
+        os.makedirs("media_files\\{}".format(new_folder))
+        folder_path = "media_files\\{}".format(new_folder)
         audio_file_name = os.path.join(folder_path, audio_file_name)
         audio_file.save(audio_file_name)
 
-        generate_transcription(audio_file_name)
+        generate_transcription(audio_file_name, new_folder)
 
-        upload_files()
+        upload_files(new_folder)
 
     else:
         pass
