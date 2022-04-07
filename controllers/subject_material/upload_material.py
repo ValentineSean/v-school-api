@@ -7,6 +7,7 @@ from flask import jsonify, request
 from . import subject_material_blueprint
 
 from ...native_functions.deepgram_functions.generate_transcription import generate_transcription
+from ...native_functions.dropbox_functions.upload_files import upload_files
 
 # load_dotenv()
 
@@ -27,6 +28,8 @@ def upload_material():
         audio_file.save(audio_file_name)
 
         generate_transcription(audio_file_name)
+
+        upload_files()
 
     else:
         pass

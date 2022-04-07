@@ -1,7 +1,5 @@
-from email.mime import audio
 import os
 import asyncio
-import json
 
 from deepgram import Deepgram
 from dotenv import load_dotenv
