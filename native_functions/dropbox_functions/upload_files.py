@@ -1,6 +1,7 @@
 import os
 import shutil
-from threading import local
+import json
+import requests
 import traceback
 import dropbox
 
@@ -45,6 +46,30 @@ def upload_files(new_folder):
 
     file_to_upload = open(local_path, "rb").read()
 
-    dropbox_client.files_upload(f=file_to_upload, path=dropbox_path, autorename=True)
+    file_metadata = dropbox_client.files_upload(f=file_to_upload, path=dropbox_path, autorename=True)
+
+    print(file_metadata.path_display)
+
+
+    # Create Shared Link
+    
+    url = "https://api.dropboxapi.com/2/sharing/create_shared_link"
+
+    headers = {
+        "Authorization": "Bearer {}".format(access_token),
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "path": file_metadata.path_display
+    }
+
+    r = requests.post(
+        url,
+        headers = headers,
+        data = json.dumps(data)
+    )
 
     print("Done uploading :)")
+
+    print(r.content)
