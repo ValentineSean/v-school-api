@@ -1,4 +1,3 @@
-import time
 import json
 import requests
 
@@ -10,15 +9,15 @@ def create_vtt_shared_link(access_token, new_folder, path_display, url, headers)
         "path": path_display
     }
 
-    time.sleep(10)
-
-    r = requests.post(
+    vtt_shared_link = requests.post(
         url,
         headers = headers,
         data = json.dumps(data)
     )
 
-    print("Done uploading :)")
-    print("Now Web VTT shared link :)")
+    vtt_shared_link = vtt_shared_link.content
+    vtt_shared_link = json.loads(vtt_shared_link.decode("utf-8"))
+    vtt_shared_link = vtt_shared_link["url"]
+    vtt_shared_link = vtt_shared_link.replace("?dl=0", "?raw=1")
 
-    print(r.content)
+    return vtt_shared_link

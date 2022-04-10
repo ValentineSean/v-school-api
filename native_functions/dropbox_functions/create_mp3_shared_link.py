@@ -1,4 +1,3 @@
-import time
 import json
 import requests
 
@@ -10,15 +9,15 @@ def create_mp3_shared_link(access_token, new_folder, path_display, url, headers)
         "path": path_display
     }
 
-    time.sleep(10)
-
-    r = requests.post(
+    mp3_shared_link = requests.post(
         url,
         headers = headers,
         data = json.dumps(data)
     )
 
-    print("Done uploading :)")
-    print("Now Web MP3 shared link :)")
+    mp3_shared_link = mp3_shared_link.content
+    mp3_shared_link = json.loads(mp3_shared_link.decode("utf-8"))
+    mp3_shared_link = mp3_shared_link["url"]
+    mp3_shared_link = mp3_shared_link.replace("?dl=0", "?raw=1")
 
-    print(r.content)
+    return mp3_shared_link

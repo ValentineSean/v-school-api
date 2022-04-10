@@ -1,7 +1,6 @@
 import os
 import shutil
-import json
-import requests
+import time
 import traceback
 import dropbox
 
@@ -70,5 +69,17 @@ def upload_files(new_folder):
         "Content-Type": "application/json"
     }
 
-    create_mp3_shared_link(access_token, new_folder, path_display, url, headers)
-    create_vtt_shared_link(access_token, new_folder, path_display, url, headers)
+    time.sleep(10)
+
+    mp3_shared_link = create_mp3_shared_link(access_token, new_folder, path_display, url, headers)
+    # mp3_shared_link = json.loads(mp3_shared_link.decode("utf-8"))
+
+    vtt_shared_link = create_vtt_shared_link(access_token, new_folder, path_display, url, headers)
+    # vtt_shared_link = json.loads(vtt_shared_link.decode("utf-8"))
+
+    print("Done uploading :)")
+
+    print("Shared Links:")
+
+    print("MP3 SHARED LINK", mp3_shared_link)
+    print("VTT SHARED LINK", vtt_shared_link)
