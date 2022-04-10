@@ -17,7 +17,7 @@ from ...native_functions.dropbox_functions.upload_files import upload_files
 def upload_material():
 
     audio_file = request.files["audio_file"]
-    new_folder = "good_to_be_okay"
+    new_folder = "beast_machine"
 
     # print(audio_file.filename)
     audio_file_name = "{}.mp3".format(new_folder)

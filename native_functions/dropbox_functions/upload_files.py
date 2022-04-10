@@ -8,6 +8,10 @@ import dropbox
 from shutil import make_archive
 from dotenv import load_dotenv
 
+# Shared Links Functions
+from .create_vtt_shared_link import create_vtt_shared_link
+from .create_mp3_shared_link import create_mp3_shared_link
+
 load_dotenv()
 
 def upload_files(new_folder):
@@ -48,28 +52,23 @@ def upload_files(new_folder):
 
     file_metadata = dropbox_client.files_upload(f=file_to_upload, path=dropbox_path, autorename=True)
 
-    print(file_metadata.path_display)
+    print("***FILE METADATA***")
+    print(file_metadata)
 
+    # -------------------------------------
+
+    path_display = file_metadata.path_display
+    path_display = path_display[:-4]
 
     # Create Shared Link
     
     url = "https://api.dropboxapi.com/2/sharing/create_shared_link"
+    # url = "https://api.dropboxapi.com/2/sharing/list_shared_links"
 
     headers = {
         "Authorization": "Bearer {}".format(access_token),
         "Content-Type": "application/json"
     }
 
-    data = {
-        "path": file_metadata.path_display
-    }
-
-    r = requests.post(
-        url,
-        headers = headers,
-        data = json.dumps(data)
-    )
-
-    print("Done uploading :)")
-
-    print(r.content)
+    create_mp3_shared_link(access_token, new_folder, path_display, url, headers)
+    create_vtt_shared_link(access_token, new_folder, path_display, url, headers)
