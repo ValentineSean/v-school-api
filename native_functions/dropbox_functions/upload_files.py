@@ -83,3 +83,8 @@ def upload_files(new_folder):
 
     print("MP3 SHARED LINK", mp3_shared_link)
     print("VTT SHARED LINK", vtt_shared_link)
+
+    return {
+        "mp3_shared_link": mp3_shared_link,
+        "vtt_shared_link": vtt_shared_link
+    }
