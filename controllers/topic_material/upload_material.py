@@ -43,7 +43,8 @@ def upload_material():
 
             {"$set": {
                 "mp3_shared_link": shared_links["mp3_shared_link"],
-                "vtt_shared_link": shared_links["vtt_shared_link"]
+                "vtt_shared_link": shared_links["vtt_shared_link"],
+                "upload_status": "uploaded",
             }
         })
 

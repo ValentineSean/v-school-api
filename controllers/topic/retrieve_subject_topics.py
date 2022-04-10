@@ -9,16 +9,16 @@ from ...configurations.database import mongo
 
 @topic_blueprint.route("/retrieve-subject-topics/<subject_id>", methods=["GET"])
 def retrieve_subject_topics(subject_id):
-    subject_topics = mongo.db.topic.find(
-        {"$and":[
+    subject_topics = mongo.db.topic.find({
+        "$and":[
             {
                 "subject_id": subject_id
             },
             {
                 "record_status": "ACTIVE",
             }
-        ]}
-    )
+        ]
+    })
 
     if subject_topics:
         subject_topics = json.loads(dumps(subject_topics))

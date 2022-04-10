@@ -20,6 +20,7 @@ def create_topic():
     new_topic_id = mongo.db.topic.insert_one({
         "subject_id": subject_id,
         "topic_name": topic_name,
+        "upload_status": "no_media",
         "creation_date": creation_date,
         "record_status": "ACTIVE"
     }).inserted_id
