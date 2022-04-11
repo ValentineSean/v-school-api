@@ -30,12 +30,18 @@ def create_user():
         "record_status": "ACTIVE"
     }).inserted_id
 
-    new_user = mongo.db.user.find_one({
-        "$and": [
-            {"_id": ObjectId(new_user_id)},
-            {"record_status": "ACTIVE"}
-        ]
-    })
+    new_user = mongo.db.user.find_one(
+        {
+            "$and": [
+                {"_id": ObjectId(new_user_id)},
+                {"record_status": "ACTIVE"}
+            ]
+        },
+
+        {
+            "password": 0,
+        }
+    )
 
     if new_user:
         new_user = json.loads(dumps(new_user))
