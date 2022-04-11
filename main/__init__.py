@@ -9,6 +9,7 @@ from ..configurations.database import database_credentials
 from ..controllers.topic_material import topic_material_blueprint
 from ..controllers.subject import subject_blueprint
 from ..controllers.topic import topic_blueprint
+from ..controllers.user import user_blueprint
 
 app = Flask(__name__)
 
@@ -25,6 +26,7 @@ def create_app():
     app.register_blueprint(topic_material_blueprint)
     app.register_blueprint(subject_blueprint)
     app.register_blueprint(topic_blueprint)
+    app.register_blueprint(user_blueprint)
 
     return app
 
